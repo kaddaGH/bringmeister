@@ -1,0 +1,71 @@
+seeder:
+  file: ./seeder/seeder.rb
+  disabled: false
+parsers:
+  - page_type: products_search
+    file: ./parsers/products_search.rb
+    disabled: false
+  - page_type: product_details
+    file: ./parsers/product_details.rb
+    disabled: false
+exporters:
+  - exporter_name: products_json
+    exporter_type: json
+    collection: products
+    write_mode: pretty_array
+  - exporter_name: products_csv
+    exporter_type: csv
+    collection: products
+    fields:
+      - header: "RETAILER_ID"
+        path: "RETAILER_ID"
+      - header: "RETAILER_NAME"
+        path: "RETAILER_NAME"
+      - header: "GEOGRAPHY_NAME"
+        path: "GEOGRAPHY_NAME"
+      - header: "SCRAPE_INPUT_TYPE"
+        path: "SCRAPE_INPUT_TYPE"
+      - header: "SCRAPE_INPUT_SEARCH_TERM"
+        path: "SCRAPE_INPUT_SEARCH_TERM"
+      - header: "SCRAPE_INPUT_CATEGORY"
+        path: "SCRAPE_INPUT_CATEGORY"
+      - header: "SCRAPE_URL_NBR_PRODUCTS"
+        path: "SCRAPE_URL_NBR_PRODUCTS"
+      - header: "SCRAPE_URL_NBR_PROD_PG1"
+        path: "SCRAPE_URL_NBR_PROD_PG1"
+      - header: "PRODUCT_BRAND"
+        path: "PRODUCT_BRAND"
+      - header: "PRODUCT_RANK"
+        path: "PRODUCT_RANK"
+      - header: "PRODUCT_PAGE"
+        path: "PRODUCT_PAGE"
+      - header: "PRODUCT_ID"
+        path: "PRODUCT_ID"
+      - header: "UPC"
+        path: "UPC"
+      - header: "EAN"
+        path: "EAN"
+      - header: "PRODUCT_NAME"
+        path: "PRODUCT_NAME"
+      - header: "PRODUCT_DESCRIPTION"
+        path: "PRODUCT_DESCRIPTION"
+      - header: "PRODUCT_MAIN_IMAGE_URL"
+        path: "PRODUCT_MAIN_IMAGE_URL"
+      - header: "PRODUCT_ITEM_SIZE"
+        path: "PRODUCT_ITEM_SIZE"
+      - header: "PRODUCT_ITEM_SIZE_UOM"
+        path: "PRODUCT_ITEM_SIZE_UOM"
+      - header: "PRODUCT_ITEM_QTY_IN_PACK"
+        path: "PRODUCT_ITEM_QTY_IN_PACK"
+      - header: "PRODUCT_STAR_RATING"
+        path: "PRODUCT_STAR_RATING"
+      - header: "PRODUCT_NBR_OF_REVIEWS"
+        path: "PRODUCT_NBR_OF_REVIEWS"
+      - header: "SALES_PRICE"
+        path: "SALES_PRICE"
+      - header: "IS_AVAILABLE"
+        path: "IS_AVAILABLE"
+      - header: "PROMOTION_TEXT"
+        path: "PROMOTION_TEXT"
+      - header: "EXTRACTED_ON"
+        path: "EXTRACTED_ON"
