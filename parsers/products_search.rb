@@ -69,8 +69,8 @@ products.each_with_index do |product, i|
 
 
   ].find {|regexp| size_info =~ regexp}
-  uom = $1
-  item_size = $2
+  uom = $2
+  item_size = $1
 
   match = [
       /(\d+)\s?[xX]/,
@@ -120,7 +120,18 @@ products.each_with_index do |product, i|
 
   product_details['_collection'] = 'products'
 
-  outputs << product_details
+  payload = '{"operationName":"GetProductDetails","variables":{"productId":"product_id","zip":"13355"},"query":"query GetProductDetails($productId: String!, $zip: String!) {\n  product(productId: $productId, zip: $zip) {\n    name\n    sku\n    isAvailable\n    depositType\n    images {\n      list\n      details\n      __typename\n    }\n    prices {\n      price\n      specialPrice\n      specialEndDateTs\n      specialStartDateTs\n      __typename\n    }\n    nutrition {\n      reference\n      items {\n        label\n        value\n        __typename\n      }\n      __typename\n    }\n    ingredients {\n      text\n      additives\n      allergenic\n      __typename\n    }\n    features {\n      label\n      value\n      __typename\n    }\n    content {\n      hint\n      description\n      __typename\n    }\n    __typename\n  }\n}\n"}'
+  payload = payload.gsub(/product_id/,product['id'])
+  pages << {
+      page_type: 'product_description',
+      method: 'POST',
+      url: "https://www.bringmeister.de/graphql?search=#{page['vars']['search_term']}&page=#{page['vars']['page']}&rank=#{i + 1}",
+      body:payload,
+      vars: {
+          'product_details' => product_details
+      }
+
+  }
 
 
 end
