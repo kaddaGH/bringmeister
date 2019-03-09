@@ -125,7 +125,7 @@ products.each_with_index do |product, i|
   pages << {
       page_type: 'product_description',
       method: 'POST',
-      url: "https://www.bringmeister.de/graphql?search=#{page['vars']['search_term']}&page=#{page['vars']['page']}&rank=#{i + 1}",
+      url: "https://www.bringmeister.de/graphql?search=#{page['vars']['search_term']}&ipage=#{page['vars']['page']}&irank=#{i + 1}",
       body:payload,
       vars: {
           'product_details' => product_details
