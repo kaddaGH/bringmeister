@@ -86,7 +86,7 @@ products.each_with_index do |product, i|
 
 
   is_available = product['isAvailable']==true ? "1":""
-
+  image = "https:"+product['images']['list']["200"] rescue ''
 
   product_details = {
       # - - - - - - - - - - -
@@ -108,7 +108,7 @@ products.each_with_index do |product, i|
       PRODUCT_NAME: product['name'],
       EAN: product['sku'],
       PRODUCT_DESCRIPTION: "",
-      PRODUCT_MAIN_IMAGE_URL:"https:"+product['images']['list']["200"],
+      PRODUCT_MAIN_IMAGE_URL:image,
       PRODUCT_ITEM_SIZE: item_size,
       PRODUCT_ITEM_SIZE_UOM: uom,
       PRODUCT_ITEM_QTY_IN_PACK: in_pack,
