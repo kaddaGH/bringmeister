@@ -7,8 +7,10 @@ features = data['data']['product']['features'] rescue []
 description=(description.nil?)?'':description
 features.each do |feature|
 
+if  feature['label']=='Wissenswertes'
+  description = description +' . '+feature['label']+':'+feature['value']
+end
 
-description = description +' . '+feature['label']+':'+feature['value']
 
 end
 
