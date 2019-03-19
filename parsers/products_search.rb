@@ -34,7 +34,7 @@ else
   nbr_products_pg1 = page['vars']['nbr_products_pg1']
 end
 
-
+ranking_counter=1
 products.each_with_index do |product, i|
 
   promotion = product['prices']['specialDiscount']>0 ? "-"+product['prices']['specialDiscount']+"%":""
@@ -83,7 +83,12 @@ products.each_with_index do |product, i|
       /(\d+)\s?[Pp][Kk]/
   ].find {|regexp| size_info  =~ regexp}
   in_pack = match ? $1 : '1'
-
+  if product['isAvailable']==true
+   ranking=ranking_counter
+   ranking_counter+=1
+  else
+  ranking=''
+  end
 
   is_available = product['isAvailable']==true ? "1":""
   image = "https:"+product['images']['list']["200"] rescue ''
@@ -102,7 +107,7 @@ products.each_with_index do |product, i|
       SCRAPE_URL_NBR_PROD_PG1: nbr_products_pg1,
       # - - - - - - - - - - -
       PRODUCT_BRAND: brand,
-      PRODUCT_RANK: i+1,
+      PRODUCT_RANK: ranking,
       PRODUCT_PAGE: page['vars']['page'],
       PRODUCT_ID: product['id'],
       PRODUCT_NAME: product['name'],
