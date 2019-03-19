@@ -37,7 +37,7 @@ end
 ranking_counter=1
 products.each_with_index do |product, i|
 
-  promotion = product['prices']['specialDiscount']>0 ? "-"+product['prices']['specialDiscount']+"%":""
+  promotion = product['prices']['specialDiscount']>0 ? "-"+product['prices']['specialDiscount'].to_s+"%":""
 
   price = product['prices']['specialPrice']
   if price.nil?
